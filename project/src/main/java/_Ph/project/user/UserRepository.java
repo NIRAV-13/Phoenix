@@ -1,0 +1,19 @@
+package _Ph.project.user;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+import static org.hibernate.loader.Loader.SELECT;
+
+@Repository
+public interface UserRepository
+        extends JpaRepository<User, Long> {
+
+    //used to find student with email
+    @Query("SELECT u FROM User u WHERE u.email= ?1")
+    Optional<User> findUserbyEmail(String email);
+
+}
