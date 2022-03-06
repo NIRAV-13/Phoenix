@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Phoenix.com</title>
+    <h1></h1>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--    <link rel="stylesheet" type="text/css" media="all"-->
+<!--          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />-->
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="example" class="table table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Parking Id</th>
+                    <th>Longitude</th>
+                    <th>Available Slots</th>
+                    <th>Latitude</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${p1}">
+                    <td th:text="${product.getParkingid()}"></td>
+                    <td th:text="${product.getLongitude()}"></td>
+                    <td th:text="${product.getAvaiable_slots()}"></td>
+                    <td th:text="${product.getLatitude()}"></td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+
+
+</script>
+</body>
+</html>
