@@ -24,6 +24,9 @@ build:       # This job runs in the build stage, which runs first.
   script:
     - mvn test
     - mvn clean install
+    - apt install wget
+    - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
+
 
 unit-test:   # This job runs in the test stage.
   image: maven:latest
@@ -32,7 +35,6 @@ unit-test:   # This job runs in the test stage.
   script:
     - mvn test
     - mvn clean install
-    - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
 
 
 # deploy:      # This job runs in the deploy stage.
