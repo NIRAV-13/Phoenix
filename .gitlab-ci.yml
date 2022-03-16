@@ -32,6 +32,7 @@ unit-test:   # This job runs in the test stage.
   script:
     - mvn test
     - mvn clean install
+    - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
 
 
 # deploy:      # This job runs in the deploy stage.
