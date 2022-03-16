@@ -24,7 +24,7 @@ build:       # This job runs in the build stage, which runs first.
   script:
     - mvn test
     - mvn clean install
-    - apt install wget
+    - sudo apt install wget
     - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
 
 
