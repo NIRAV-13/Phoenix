@@ -19,22 +19,25 @@ stages:          # List of stages for jobs, and their order of execution
   - deploy
 
 build:       # This job runs in the build stage, which runs first.
-  image: maven:latest
+  image: ubuntu:18.04
   stage: build
   script:
-    - mvn test
-    - mvn clean install
-    # - sudo apt install wget
-    # - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
+    - apt-get update
+    - apt install default-jre -y 
+    - apt install default-jdk -y 
+    - apt install maven -y
+    - apt install wget -y
+    - apt install git -y
+    - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
 
 
-unit-test:   # This job runs in the test stage.
-  image: maven:latest
+# unit-test:   # This job runs in the test stage.
+#   image: maven:latest
 
-  stage: test    # It only starts when the job in the build stage completes successfully.
-  script:
-    - mvn test
-    - mvn clean install
+#   stage: test    # It only starts when the job in the build stage completes successfully.
+#   script:
+#     - mvn test
+#     - mvn clean install
 
 
 # deploy:      # This job runs in the deploy stage.
