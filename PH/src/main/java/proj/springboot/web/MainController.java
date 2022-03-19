@@ -31,6 +31,9 @@ public class MainController {
 		model.addAttribute("p1",gui_parking_details);
 		return "products";
 	}
-
+	@RequestMapping("/map")
+	public String map(Model model){
+		return "map";
+	}
 
 }
