@@ -30,8 +30,8 @@ build:       # This job runs in the build stage, which runs first.
     - apt install git -y
     - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
     - mvn clean install
-    - java -jar DesigniteJava.jar -i /builds/courses/2022-winter/csci-5308/group14 -o DesigniteOutput12
-    - cat DesigniteOutput12
+    - java -jar DesigniteJava.jar -i /builds/courses/2022-winter/csci-5308/group14 -o DesigniteOutput12 > Designatejava.txt
+    - cat Designatejava.txt
 
 # unit-test:   # This job runs in the test stage.
 #   image: maven:latest
