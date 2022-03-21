@@ -23,16 +23,20 @@ build:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - apt-get update
-    - apt install default-jre -y 
-    - apt install default-jdk -y 
-    - apt install maven -y
-    - apt install wget -y
+    # - apt install default-jre -y 
+    # - apt install default-jdk -y 
+    # - apt install maven -y
+    # - apt install wget -y
     - apt install git -y
-    - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
-    - mvn clean install
-    - java -jar DesigniteJava.jar -i /builds/courses/2022-winter/csci-5308/group14 -o DesigniteOutput12 > Designatejava.txt
-    - cat Designatejava.txt
-    - ls
+    # - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
+    # - mvn clean install
+    # - java -jar DesigniteJava.jar -i /builds/courses/2022-winter/csci-5308/group14 -o DesigniteOutput12 > Designatejava.txt
+    # - cat Designatejava.txt
+    # - ls
+    - git remote add heroku https://heroku:818f1242-336d-4db1-896d-94fff45e033f@git.heroku.com/asdc-group-14.git
+    - git push -f heroku HEAD:master
+
+
 
 # unit-test:   # This job runs in the test stage.
 #   image: maven:latest
