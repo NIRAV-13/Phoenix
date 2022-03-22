@@ -6,6 +6,16 @@ public class Parking_details {
     private String longitude;
     private int avaiable_slots;
 
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    private String direction;
+
     public int getAvaiable_slots() {
         return avaiable_slots;
     }

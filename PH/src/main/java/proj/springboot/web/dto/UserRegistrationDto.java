@@ -8,11 +8,11 @@ public class UserRegistrationDto {
 	private String uNum;
 	private String street;
 	private String city;
-	
+
 	public UserRegistrationDto(){
-		
+
 	}
-	
+
 	public UserRegistrationDto(String firstName, String lastName, String email, String password, String uNum, String street, String city) {
 		super();
 		this.firstName = firstName;
@@ -24,7 +24,7 @@ public class UserRegistrationDto {
 		this.city = city;
 
 	}
-	
+
 	public String getFirstName() {
 
 		return firstName;

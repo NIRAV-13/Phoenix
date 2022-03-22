@@ -1,11 +1,14 @@
 package proj.springboot.parking;
 
+import proj.springboot.Map.direction;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static proj.springboot.parking.Database_connection.testing_connection;
 
@@ -73,7 +76,8 @@ public class reading_database {
     public static ArrayList<Parking_details> parking_cards() {
         try {
             ArrayList<Parking_details> parking_details = new ArrayList<>();
-
+            String map_details = direction.direction_finder();
+            System.out.println(map_details);
             int initial_available_slots=0;
             int used_spots=0;
             //tesing database connection
@@ -84,7 +88,7 @@ public class reading_database {
             //selecting database
             int rs2 = stmt1.executeUpdate("Use User1");
             //finding the password stored in database
-            ResultSet rs1 = stmt1.executeQuery("select * from parking_location pl inner join parking_detail pd  where pd.parking_id = pl.parking_id");
+            ResultSet rs1 = stmt1.executeQuery("select * from parking_location pl inner join parking_detail pd where pd.parking_id = pl.parking_id");
             //retreving the value stored in database
             while(rs1.next()){
                 //getting value of total initial slots available
@@ -95,6 +99,7 @@ public class reading_database {
                 initial_available_slots=rs1.getInt(6);
                 used_spots=rs1.getInt(7);
                 pd.setAvaiable_slots(initial_available_slots-used_spots);
+                pd.setDirection(map_details);
                 parking_details.add(pd);
             }
             for(Parking_details pd1 : parking_details){
@@ -102,6 +107,7 @@ public class reading_database {
                 System.out.println(pd1.getAvaiable_slots());
                 System.out.println(pd1.getLatitude());
                 System.out.println(pd1.getLongitude());
+                System.out.println(pd1.getDirection());
             }
             return parking_details;
         } catch (Exception e) {

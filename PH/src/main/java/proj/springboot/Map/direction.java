@@ -1,16 +1,11 @@
 package proj.springboot.Map;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 import java.awt.*;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.sql.SQLException;
 
 public class direction {
-    public static void main(String args[]){
+    public static String direction_finder() throws SQLException, ClassNotFoundException {
         String lat="";
         String lng="";
         String[] location_get = Map.Map();
@@ -24,10 +19,12 @@ public class direction {
             String v = "Test";
             String maps =String.format("http://maps.google.com/maps?saddr=Current"+"%%20Location&daddr=%s,%s",lat,lng);
             System.out.println(maps);
-            Desktop.getDesktop().browse(new URI(maps));
+            return maps;
+//            Desktop.getDesktop().browse(new URI(maps));
         } catch (Exception e) {
             System.out.println(e);
         }
+        return lat;
     }
 
 }

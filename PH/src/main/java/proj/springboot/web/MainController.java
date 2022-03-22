@@ -14,7 +14,7 @@ import static proj.springboot.parking.reading_database.parking_cards;
 
 @Controller
 public class MainController {
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "login";
