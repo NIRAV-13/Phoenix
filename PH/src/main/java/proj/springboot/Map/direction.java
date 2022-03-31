@@ -1,11 +1,9 @@
 package proj.springboot.Map;
 
-import java.awt.*;
-import java.net.URI;
 import java.sql.SQLException;
 
 public class direction {
-    public static String direction_finder() throws SQLException, ClassNotFoundException {
+    public static String direction_finder(String test) throws SQLException, ClassNotFoundException {
         String lat="";
         String lng="";
         String[] location_get = Map.Map();

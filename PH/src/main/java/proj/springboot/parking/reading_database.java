@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static proj.springboot.parking.Database_connection.testing_connection;
 
@@ -76,7 +75,7 @@ public class reading_database {
     public static ArrayList<Parking_details> parking_cards() {
         try {
             ArrayList<Parking_details> parking_details = new ArrayList<>();
-            String map_details = direction.direction_finder();
+            String map_details = direction.direction_finder("test");
             System.out.println(map_details);
             int initial_available_slots=0;
             int used_spots=0;
