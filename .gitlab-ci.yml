@@ -27,7 +27,7 @@ build:       # This job runs in the build stage, which runs first.
     # - apt install default-jdk -y 
     # - apt install maven -y
     # - apt install wget -y
-    - apt-get install curl
+    - apt-get install curl -y
     - apt install git -y
     # - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
     # - mvn clean install
