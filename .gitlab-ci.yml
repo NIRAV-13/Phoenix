@@ -23,6 +23,8 @@ build:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - apt-get update
+    - apt-get clean
+
     # - apt install default-jre -y 
     # - apt install default-jdk -y 
     # - apt install maven -y
