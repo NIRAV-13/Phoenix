@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import static proj.springboot.parking.Database_connection.testing_connection;
 
 public class Map {
-    public static String[] Map() throws ClassNotFoundException, SQLException {
+    public static String[] Map(String Parking_Name) throws ClassNotFoundException, SQLException {
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyD9AqMr1RDHSU7I_JCsn9sfNKkgoFOKVE8")
                 .build();
@@ -26,13 +26,13 @@ public class Map {
         //creating statement for executing query statement
         Statement stmt1 = (Statement) connection.createStatement();
         //selecting database
-        int rs2 = stmt1.executeUpdate("Use user");
-        ResultSet rs1 = stmt1.executeQuery("select * from user where email ='sparsh1176@gmail.com'");
+        int rs2 = stmt1.executeUpdate("Use CSCI5308_14_TEST");
+        ResultSet rs1 = stmt1.executeQuery("select * from parking where parking_name ='" + Parking_Name +"'");
         String address = null;
         String city =null;
         while(rs1.next()) {
-            address = rs1.getString(7);
-            city = rs1.getString(2);
+            address = rs1.getString(3);
+            city = rs1.getString(5);
         }
         System.out.println(city);
         System.out.println(address);
@@ -55,6 +55,6 @@ public class Map {
         }
         }
         public static void main(String args[]) throws SQLException, ClassNotFoundException {
-        Map();
+        Map("Park Victoria Appartment");
         }
     }

@@ -1,6 +1,6 @@
 package proj.springboot.parking;
 
-import proj.springboot.Map.direction;
+//import proj.springboot.Map.direction;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -75,8 +75,8 @@ public class reading_database {
     public static ArrayList<Parking_details> parking_cards() {
         try {
             ArrayList<Parking_details> parking_details = new ArrayList<>();
-            String map_details = direction.direction_finder("test");
-            System.out.println(map_details);
+//            String map_details = direction.direction_finder("test");
+//            System.out.println(map_details);
             int initial_available_slots=0;
             int used_spots=0;
             //tesing database connection
@@ -85,28 +85,39 @@ public class reading_database {
             //creating statement for executing query statement
             Statement stmt1 = (Statement) connection.createStatement();
             //selecting database
-            int rs2 = stmt1.executeUpdate("Use User1");
+            int rs2 = stmt1.executeUpdate("Use CSCI5308_14_TEST");
             //finding the password stored in database
-            ResultSet rs1 = stmt1.executeQuery("select * from parking_location pl inner join parking_detail pd where pd.parking_id = pl.parking_id");
+            ResultSet rs1 = stmt1.executeQuery("select * from parking");
             //retreving the value stored in database
             while(rs1.next()){
                 //getting value of total initial slots available
                 Parking_details pd = new Parking_details();
-                pd.setLatitude(rs1.getString(1));
-                pd.setLongitude(rs1.getString(2));
-                pd.setParkingid(rs1.getInt(3));
-                initial_available_slots=rs1.getInt(6);
-                used_spots=rs1.getInt(7);
-                pd.setAvaiable_slots(initial_available_slots-used_spots);
-                pd.setDirection(map_details);
+//                pd.setDate(rs1.getDate(6));
+                pd.setParking_name(rs1.getString(11));
+                pd.setTotal_slots(rs1.getInt(7));
+                int available_slots = rs1.getInt(7)-rs1.getInt(8);
+                pd.setAvailable_slots(available_slots);
+                pd.setParking_location(rs1.getString(3));
+                pd.setParkingid(rs1.getInt(2));
+                pd.setParking_pincode(rs1.getString(5));
+                pd.setBooked_slots(rs1.getInt(8));
+                pd.setEnd_time(rs1.getTime(10));
+                pd.setStarting_time(rs1.getTime(9));
+                pd.setSlot_price((rs1.getInt(4)));
                 parking_details.add(pd);
             }
             for(Parking_details pd1 : parking_details){
                 System.out.println(pd1.getParkingid());
-                System.out.println(pd1.getAvaiable_slots());
-                System.out.println(pd1.getLatitude());
-                System.out.println(pd1.getLongitude());
-                System.out.println(pd1.getDirection());
+                System.out.println(pd1.getParking_location());
+                System.out.println(pd1.getSlot_price());
+                System.out.println(pd1.getParking_pincode());
+//                System.out.println(pd1.getDate());
+                System.out.println(pd1.getAvailable_slots());
+                System.out.println(pd1.getTotal_slots());
+                System.out.println(pd1.getBooked_slots());
+                System.out.println(pd1.getStarting_time());
+                System.out.println(pd1.getEnd_time());
+                System.out.println(pd1.getParking_name());
             }
             return parking_details;
         } catch (Exception e) {

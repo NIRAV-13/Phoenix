@@ -3,22 +3,23 @@
 
 <head>
 
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link th:href="@{/css/ph1.css}" rel="stylesheet" type="text/css" />
 
     <title>Phoenix</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/ph1.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -194,7 +195,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Following Slots are available in the Pin code above</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Following Slots are available near your location</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-plus fa-sm text-white-50"></i> Book New slot</a>
                 </div>
@@ -222,15 +223,27 @@
                                     <th>Parking Name</th>
                                     <th>Parking Location</th>
                                     <th>Available Slots</th>
+                                    <th>Price($)</th>
+                                    <th>Book Slot</th>
                                     <th>Directions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="product : ${p1}">
-                                    <td th:text="${product.getParkingid()}"></td>
-                                    <td th:text="${product.getLongitude()}"></td>
-                                    <td th:text="${product.getAvaiable_slots()}"></td>
-                                    <td th:text="${product.getLatitude()}"></td>
+                                    <td th:text="${product.getParking_name()}"></td>
+                                    <td th:text="${product.getParking_location()}"></td>
+                                    <td th:text="${product.getAvailable_slots()}"></td>
+                                    <td th:text="${product.getSlot_price()}"></td>
+                                    <td >
+                                        <form th:action="@{/orders/customer_processed_orders}" style="padding: 10px;" method="post" >
+                                            <button class="btn btn-outline-success" type="submit">Book Slot</button>
+                                        </form>
+                                    </td>
+                                    <td >
+                                        <form th:action="@{/orders/customer_processed_orders}" style="padding: 10px;" method="post" >
+                                            <button class="btn btn-outline-success" type="submit">Directions</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

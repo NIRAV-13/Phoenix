@@ -25,15 +25,10 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping("/products")
+	@GetMapping("/products")
 	public String listProducts(Model model){
 		List<Parking_details> gui_parking_details = parking_cards();
 		model.addAttribute("p1",gui_parking_details);
-		return "products";
+		return "slots";
 	}
-	@RequestMapping("/map")
-	public String map(Model model){
-		return "map";
-	}
-
 }
