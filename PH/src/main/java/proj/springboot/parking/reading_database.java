@@ -2,6 +2,8 @@ package proj.springboot.parking;
 
 //import proj.springboot.Map.direction;
 
+import proj.springboot.Map.direction;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -94,6 +96,7 @@ public class reading_database {
                 Parking_details pd = new Parking_details();
 //                pd.setDate(rs1.getDate(6));
                 pd.setParking_name(rs1.getString(11));
+                pd.setId(rs1.getInt(1));
                 pd.setTotal_slots(rs1.getInt(7));
                 int available_slots = rs1.getInt(7)-rs1.getInt(8);
                 pd.setAvailable_slots(available_slots);
@@ -104,6 +107,7 @@ public class reading_database {
                 pd.setEnd_time(rs1.getTime(10));
                 pd.setStarting_time(rs1.getTime(9));
                 pd.setSlot_price((rs1.getInt(4)));
+                pd.setMaps(direction.direction_finder(rs1.getInt(2)));
                 parking_details.add(pd);
             }
             for(Parking_details pd1 : parking_details){
@@ -118,6 +122,7 @@ public class reading_database {
                 System.out.println(pd1.getStarting_time());
                 System.out.println(pd1.getEnd_time());
                 System.out.println(pd1.getParking_name());
+                System.out.println(pd1.getMaps());
             }
             return parking_details;
         } catch (Exception e) {

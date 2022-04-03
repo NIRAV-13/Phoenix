@@ -1,14 +1,17 @@
 package proj.springboot.Map;
 
+import proj.springboot.parking.Parking_details;
+
 import java.awt.*;
 import java.net.URI;
 import java.sql.SQLException;
+import java.util.List;
 
 public class direction {
-    public static String direction_finder(String test) throws SQLException, ClassNotFoundException {
+    public static String direction_finder(Integer parking_id) throws SQLException, ClassNotFoundException {
         String lat="";
         String lng="";
-        String[] location_get = Map.Map("Park Victoria Appartment");
+        String[] location_get = Map.Map(parking_id);
         for(int i=0;i<1;i++){
             lat = location_get[i];
             lng = location_get[i+1];
@@ -19,16 +22,15 @@ public class direction {
             String v = "Test";
             String maps =String.format("http://maps.google.com/maps?saddr=Current"+"%%20Location&daddr=%s,%s",lat,lng);
             System.out.println(maps);
-            Desktop.getDesktop().browse(new URI(maps));
-
+//            Desktop.getDesktop().browse(new URI(maps));
             return maps;
         } catch (Exception e) {
             System.out.println(e);
+            return null;
         }
-        return lat;
     }
     public static void main(String args[]) throws SQLException, ClassNotFoundException {
-        direction_finder("test");
+        direction_finder(2);
     }
 
 }

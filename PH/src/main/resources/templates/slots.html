@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -116,7 +114,7 @@
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Pin Code"
-                               aria-label="Search" aria-describedby="basic-addon2">
+                               aria-label="Search" aria-describedby="basic-addon2" onchange="myFunction()" id="pincode">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">
                                 <i class="fas fa-search fa-sm"></i>
@@ -225,7 +223,6 @@
                                     <th>Available Slots</th>
                                     <th>Price($)</th>
                                     <th>Book Slot</th>
-                                    <th>Directions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -235,15 +232,11 @@
                                     <td th:text="${product.getAvailable_slots()}"></td>
                                     <td th:text="${product.getSlot_price()}"></td>
                                     <td >
-                                        <form th:action="@{/orders/customer_processed_orders}" style="padding: 10px;" method="post" >
+                                        <form th:action="@{/slotbooking/{id}(id =${product.getParkingid()})}" style="padding: 10px;" method="Get" >
                                             <button class="btn btn-outline-success" type="submit">Book Slot</button>
                                         </form>
                                     </td>
                                     <td >
-                                        <form th:action="@{/orders/customer_processed_orders}" style="padding: 10px;" method="post" >
-                                            <button class="btn btn-outline-success" type="submit">Directions</button>
-                                        </form>
-                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -322,6 +315,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</div>
 </body>
 
 </html>

@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,6 +14,7 @@
     <title>Phoenix</title>
 
     <!-- Custom fonts for this template-->
+
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -114,7 +117,9 @@
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Pin Code"
-                               aria-label="Search" aria-describedby="basic-addon2" onchange="myFunction()" id="pincode">
+                               aria-label="Search" aria-describedby="basic-addon2">
+
+
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">
                                 <i class="fas fa-search fa-sm"></i>
@@ -193,9 +198,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Following Slots are available near your location</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-plus fa-sm text-white-50"></i> Book New slot</a>
+                    <h1 class="h3 mb-0 text-gray-800">Confirm the below Slots</h1>
                 </div>
 
 
@@ -211,7 +214,6 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Slots which are available Near by</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -222,7 +224,7 @@
                                     <th>Parking Location</th>
                                     <th>Available Slots</th>
                                     <th>Price($)</th>
-                                    <th>Book Slot</th>
+                                    <th>DIrections</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -231,18 +233,19 @@
                                     <td th:text="${product.getParking_location()}"></td>
                                     <td th:text="${product.getAvailable_slots()}"></td>
                                     <td th:text="${product.getSlot_price()}"></td>
-                                    <td >
-                                        <form th:action="@{/slotbooking/{id}(id =${product.getParkingid()})}" style="padding: 10px;" method="Get" >
-                                            <button class="btn btn-outline-success" type="submit">Book Slot</button>
+                                    <td>
+                                        <form th:action="@{/direction/{id}(id =${product.getParkingid()})}" style="padding: 10px;" method="Get" >
+                                            <button class="btn btn-outline-success" type="submit">Direction</button>
                                         </form>
                                     </td>
-                                    <td >
                                 </tr>
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
                 </div>
+
                 <!-- <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Completed slots</h6>

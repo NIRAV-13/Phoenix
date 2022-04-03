@@ -10,6 +10,16 @@ public class Parking_details {
     private String parking_location;
     private Integer booked_slots;
 
+    public String getMaps() {
+        return maps;
+    }
+
+    public void setMaps(String maps) {
+        this.maps = maps;
+    }
+
+    private String maps;
+
     public Integer getAvailable_slots() {
         return available_slots;
     }
@@ -98,6 +108,15 @@ public class Parking_details {
 
     public void setParkingid(Integer parkingid) {
         this.parkingid = parkingid;
+    }
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     private String parking_pincode;

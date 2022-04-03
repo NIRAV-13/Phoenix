@@ -1,15 +1,22 @@
 package proj.springboot.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import proj.springboot.parking.Parking_details;
 import proj.springboot.parking.reading_database;
 
+import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 import java.util.List;
 
+import static proj.springboot.Map.direction.direction_finder;
 import static proj.springboot.parking.reading_database.parking_cards;
 
 @Controller
@@ -21,37 +28,53 @@ public class MainController {
 	}
 
 	@GetMapping("/")
-	public String home() {return "index";}
-
-	@GetMapping("/Add_slot")
-	public String addSlot() {
-		return "Add_slot";
-	}
-
-//	@GetMapping("/Add_slot_form")
-//	public String slot() {
-//		return "Add_slot_form";
-//	}
-
-	@GetMapping("/Book_new_slot")
-	public String bookNewSlot() {
-		return "Book_new_slot";
-	}
-
-	@GetMapping("/Book_new_slot_list")
-	public String bookNewSlotList() {
-		return "Book_new_slot_list";
-	}
-
-	@GetMapping("/Book_slot")
-	public String bookSlot() {
-		return "Book_slot";
+	public String home() {
+		return "index";
 	}
 
 	@GetMapping("/products")
-	public String listProducts(Model model){
+	public String listProducts(Model model) {
 		List<Parking_details> gui_parking_details = parking_cards();
-		model.addAttribute("p1",gui_parking_details);
+		model.addAttribute("p1", gui_parking_details);
 		return "slots";
+	}
+
+	@GetMapping(value = "/slotbooking/{id}")
+	public String slotbooking(Model model, @PathVariable("id") long id) {
+		List<Parking_details> gui_parking_details = parking_cards();
+		for (Parking_details gui_parking_detail : gui_parking_details) {
+			if (gui_parking_detail.getParkingid() == id) {
+				model.addAttribute("p1", gui_parking_details.get((int) id - 1));
+				return "abc";
+			}
+		}
+		return null;
+	}
+
+	@GetMapping(value = "/pincode/{id}")
+	public String pincode(Model model, @PathVariable("id") String id) {
+		List<Parking_details> gui_parking_details = parking_cards();
+		for (Parking_details gui_parking_detail : gui_parking_details) {
+			if (gui_parking_detail.getParking_pincode().equals(id)) {
+				System.out.println("Testing" + gui_parking_detail.getParking_pincode());
+				model.addAttribute("p1", gui_parking_details.get(gui_parking_detail.getParkingid() - 1));
+				return "abc1";
+			} else {
+				System.out.println("Hello word");
+			}
+		}
+		return null;
+	}
+
+	@GetMapping(value = "/direction/{id}")
+	public void method(HttpServletResponse httpServletResponse,@PathVariable("id") long id) {
+		List<Parking_details> gui_parking_details = parking_cards();
+		for (Parking_details gui_parking_detail : gui_parking_details) {
+			if (gui_parking_detail.getParkingid()== id) {
+				System.out.println("Testing" + gui_parking_detail.getMaps());
+				httpServletResponse.setHeader("Location", gui_parking_detail.getMaps());
+				httpServletResponse.setStatus(302);
+			}
+		}
 	}
 }
