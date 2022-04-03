@@ -21,8 +21,31 @@ public class MainController {
 	}
 
 	@GetMapping("/")
-	public String home() {
-		return "index";
+	public String home() {return "index";}
+
+	@GetMapping("/Add_slot")
+	public String addSlot() {
+		return "Add_slot";
+	}
+
+//	@GetMapping("/Add_slot_form")
+//	public String slot() {
+//		return "Add_slot_form";
+//	}
+
+	@GetMapping("/Book_new_slot")
+	public String bookNewSlot() {
+		return "Book_new_slot";
+	}
+
+	@GetMapping("/Book_new_slot_list")
+	public String bookNewSlotList() {
+		return "Book_new_slot_list";
+	}
+
+	@GetMapping("/Book_slot")
+	public String bookSlot() {
+		return "Book_slot";
 	}
 
 	@GetMapping("/products")
