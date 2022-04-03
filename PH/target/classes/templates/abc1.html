@@ -197,7 +197,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Confirm the below Slots</h1>
+          <h1 class="h3 mb-0 text-gray-800">Confirmed Booking please show the transaction id at the counter</h1>
         </div>
 
 
@@ -219,32 +219,31 @@
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                  <th>Parking Name</th>
-                  <th>Parking Location</th>
-                  <th>Available Slots</th>
-                  <th>Price($)</th>
-                  <th>DIrections</th>
+                  <th>Place</th>
+                  <th>Time</th>
+                  <th>Transaction</th>
+                  <th>Location</th>
+                  <th>Directions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="product : ${p1}">
-                  <td th:text="${product.getParking_name()}"></td>
-                  <td th:text="${product.getParking_location()}"></td>
-                  <td th:text="${product.getAvailable_slots()}"></td>
-                  <td th:text="${product.getSlot_price()}"></td>
-                  <td th:text="${product.getMaps()}"></td>
+                  <td th:text="${product.getPlace()}"></td>
+                  <td th:text="${product.getTime()}"></td>
+                  <td th:text="${product.getTransactionId()}"></td>
+                  <td th:text="${product.getAddress()}"></td>
+                  <td>
+                    <form th:action="@{/direction/{id}(id =${product.getId()})}" style="padding: 10px;" method="Get" >
+                      <button class="btn btn-outline-success" type="submit">Direction</button>
+                    </form>
+                  </td>
+
                 </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-        <tr th:each="product : ${p1}">
-          <a type="submit" href="${product.getMaps()}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Book slot</a>
-        <tr th:each="product : ${p1}">
-          <form th:action="@{/directions/{id}(id =${product.getParkingid()})}" style="padding: 10px;" method="Get" >
-            <button class="btn btn-outline-success" type="submit">Book Slot</button>
-          </form>
           <!-- <div class="card shadow mb-4">
               <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Completed slots</h6>

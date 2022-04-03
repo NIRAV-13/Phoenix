@@ -224,7 +224,7 @@
                                     <th>Parking Location</th>
                                     <th>Available Slots</th>
                                     <th>Price($)</th>
-                                    <th>DIrections</th>
+                                    <th>Directions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -233,18 +233,22 @@
                                     <td th:text="${product.getParking_location()}"></td>
                                     <td th:text="${product.getAvailable_slots()}"></td>
                                     <td th:text="${product.getSlot_price()}"></td>
-                                    <td>
-                                        <form th:action="@{/direction/{id}(id =${product.getParkingid()})}" style="padding: 10px;" method="Get" >
-                                            <button class="btn btn-outline-success" type="submit">Direction</button>
-                                        </form>
-                                    </td>
+
                                 </tr>
                                 </tbody>
 
                             </table>
                         </div>
+
                     </div>
+
                 </div>
+                <tr th:each="product : ${p1}">
+                    <td>
+                        <form th:action="@{/payment/{id}(id =${product.getParkingid()})}" style="padding: 10px;" method="Get" >
+                            <button class="btn btn-outline-success" type="submit">Book Now</button>
+                        </form>
+                    </td>
 
                 <!-- <div class="card shadow mb-4">
                     <div class="card-header py-3">

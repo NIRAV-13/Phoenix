@@ -16,8 +16,6 @@ public class Database_connection {
             String username = pts.getProperty("jdbc.user");
             String password = pts.getProperty("jdbc.password");
             Connection con= DriverManager.getConnection(url,username,password);
-            System.out.println(username);
-            System.out.println(password);
             return con;
         } catch (Exception e) {
             System.out.println(e);

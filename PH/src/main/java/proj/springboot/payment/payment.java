@@ -11,7 +11,7 @@ import java.util.Random;
 import static proj.springboot.parking.Database_connection.testing_connection;
 
 public class payment {
-    public static void random_generation_number() {
+    public static String random_generation_number() {
         String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder string_build = new StringBuilder();
         Random random_number = new Random();
@@ -21,6 +21,7 @@ public class payment {
         }
         String string_int = string_build.toString();
         System.out.println(string_int);
+        return string_int;
     }
     public static void main(String args[]){
         random_generation_number();
