@@ -9,10 +9,13 @@ public class Slot<parkingName, parkingLocation, pincode> {
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
-
+	@Column(name = "email_id")
+	private String email_id;
 	@Column(name = "parkingName")
 	private String parkingName;
 
+	@Column(name = "availableslots")
+	private String availableslots;
 	@Column(name = "slotPrice")
 	private String slotPrice;
 
@@ -30,9 +33,12 @@ public class Slot<parkingName, parkingLocation, pincode> {
 
 	@Column(name = "endTime")
 	private String endTime;
+	@Column(name = "booked")
+	private String booked;
 
 
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+	//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //	@JoinTable(
 //			name = "users_slot",
 //			joinColumns = @JoinColumn(
@@ -46,16 +52,21 @@ public class Slot<parkingName, parkingLocation, pincode> {
 		
 	}
 
-	public Slot(String parkingName, String slotPrice, String parkingLocation, String pincode, String date, String startTime, String endTime) {
+	public Slot(String parkingName, String slotPrice,String booked, String parkingLocation,String availableslots,String email_id, String pincode, String date, String startTime, String endTime) {
 		this.parkingName = parkingName;
 		this.slotPrice = slotPrice;
 		this.parkingLocation = parkingLocation;
 		this.pincode = pincode;
+		this.email_id=email_id;
 		this.date = date;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.availableslots=availableslots;
+		this.booked=booked;
 
 	}
+
+
 
 	public Long getId() {
 		return id;

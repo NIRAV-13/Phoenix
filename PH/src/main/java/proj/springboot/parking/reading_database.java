@@ -89,25 +89,23 @@ public class reading_database {
             //selecting database
             int rs2 = stmt1.executeUpdate("Use CSCI5308_14_TEST");
             //finding the password stored in database
-            ResultSet rs1 = stmt1.executeQuery("select * from parking");
+            ResultSet rs1 = stmt1.executeQuery("select * from slot");
             //retreving the value stored in database
             while(rs1.next()){
                 //getting value of total initial slots available
                 Parking_details pd = new Parking_details();
 //                pd.setDate(rs1.getDate(6));
-                pd.setParking_name(rs1.getString(11));
+                pd.setParking_name(rs1.getString(8));
                 pd.setId(rs1.getInt(1));
-                pd.setTotal_slots(rs1.getInt(7));
-                int available_slots = rs1.getInt(7)-rs1.getInt(8);
+                pd.setTotal_slots(rs1.getInt(3));
+                int available_slots = rs1.getInt(3);
                 pd.setAvailable_slots(available_slots);
-                pd.setParking_location(rs1.getString(3));
-                pd.setParkingid(rs1.getInt(2));
-                pd.setParking_pincode(rs1.getString(5));
-                pd.setBooked_slots(rs1.getInt(8));
-                pd.setEnd_time(rs1.getTime(10));
-                pd.setStarting_time(rs1.getTime(9));
-                pd.setSlot_price((rs1.getInt(4)));
-                pd.setMaps(direction.direction_finder(rs1.getInt(2)));
+                pd.setParking_location(rs1.getString(5));
+                pd.setParkingid(rs1.getInt(1));
+                pd.setParking_pincode(rs1.getString(9));
+                pd.setBooked_slots(rs1.getInt(2));
+                pd.setSlot_price((rs1.getInt(10)));
+                pd.setMaps(direction.direction_finder(rs1.getInt(1)));
                 parking_details.add(pd);
             }
             for(Parking_details pd1 : parking_details){
@@ -115,12 +113,9 @@ public class reading_database {
                 System.out.println(pd1.getParking_location());
                 System.out.println(pd1.getSlot_price());
                 System.out.println(pd1.getParking_pincode());
-//                System.out.println(pd1.getDate());
                 System.out.println(pd1.getAvailable_slots());
                 System.out.println(pd1.getTotal_slots());
                 System.out.println(pd1.getBooked_slots());
-                System.out.println(pd1.getStarting_time());
-                System.out.println(pd1.getEnd_time());
                 System.out.println(pd1.getParking_name());
                 System.out.println(pd1.getMaps());
             }

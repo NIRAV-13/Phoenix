@@ -1,6 +1,16 @@
 package proj.springboot.web.dto;
 
 public class AddSlotDto {
+	private String booked;
+
+	public String getBooked() {
+		return booked;
+	}
+
+	public void setBooked(String booked) {
+		this.booked = booked;
+	}
+
 	private String parkingName;
 	private String slotPrice;
 	private String parkingLocation;
@@ -8,15 +18,35 @@ public class AddSlotDto {
 	private String date;
 	private String startTime;
 	private String endTime;
+	private String availableslots;
+	private String email_id;
+
+	public String getEmail_id() {
+		return email_id;
+	}
+
+	public void setEmail_id(String email_id) {
+		this.email_id = email_id;
+	}
+
+	public String getAvailableslots() {
+		return availableslots;
+	}
+
+	public void setAvailableslots(String availableslots) {
+		this.availableslots = availableslots;
+	}
 
 	public AddSlotDto(){
 
 	}
 
-	public AddSlotDto(String parkingName, String slotPrice, String parkingLocation, String pincode, String date, String startTime, String endTime) {
+	public AddSlotDto(String parkingName, String slotPrice,String Booked, String availableslots, String parkingLocation, String pincode, String date, String startTime, String endTime) {
 		super();
+		this.booked=Booked;
 		this.parkingName = parkingName;
 		this.slotPrice = slotPrice;
+
 		this.parkingLocation = parkingLocation;
 		this.pincode = pincode;
 		this.date = date;

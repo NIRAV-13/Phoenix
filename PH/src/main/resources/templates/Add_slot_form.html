@@ -215,6 +215,17 @@
                                         <input id="slotPrice" type="number" class="form-control" th:field="*{slotPrice}"
                                                required autofocus="autofocus" />
                                     </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="slotPrice"> Available Slots :</label>
+                                        <input id="availableslots" type="number" class="form-control" th:field="*{availableslots}"
+                                               required autofocus="autofocus" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="slotPrice"> Email id  :</label>
+                                        <input id="email_id" type="email" class="form-control" th:field="*{email_id}"
+                                               required autofocus="autofocus" />
+                                    </div>
+
 
                                     <div class="form-group">
                                         <label class="control-label" for="parkingLocation"> Parking Location :</label>
@@ -247,7 +258,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Submit</button>
+                                        <button type="submit" th:action="@{/}" href="/">Submit</button>
                                     </div>
                                 </form>
                                 </tbody>
