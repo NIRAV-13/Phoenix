@@ -6,6 +6,24 @@ public class booking_details {
     private String time;
     private Integer id;
     private String address;
+    private String transaction_number;
+    private Integer UserId;
+
+    public String getTransaction_number() {
+        return transaction_number;
+    }
+
+    public void setTransaction_number(String transaction_number) {
+        this.transaction_number = transaction_number;
+    }
+
+    public Integer getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(Integer userId) {
+        UserId = userId;
+    }
 
     public String getAddress() {
         return address;
