@@ -49,7 +49,8 @@
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Choose action</h6>
-          <a class="collapse-item" href="Add_slot.html">Add slot</a>
+          <a class="collapse-item" th:action="@{/Add_slot}" href="Add_slot">Add slot</a>
+
           <a class="collapse-item" href="User_list.html">User</a>
         </div>
       </div>
@@ -174,7 +175,7 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-          <a href="Add_slot_form.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+          <a th:action="@{/Add_slot}" href="Add_slot" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                   class="fas fa-plus fa-sm text-white-50"></i> Add slot</a>
         </div>
 
