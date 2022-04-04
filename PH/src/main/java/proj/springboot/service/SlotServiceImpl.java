@@ -20,8 +20,8 @@ public class SlotServiceImpl implements SlotService {
 	@Override
 	public AddSlotDto save(AddSlotDto addSlotDto) {
 		Slot slot = new Slot(addSlotDto.getParkingName(),
-				addSlotDto.getSlotPrice(),addSlotDto.getAvailableslots(),addSlotDto.getEmail_id(),addSlotDto.getBooked(),
-				addSlotDto.getParkingLocation(),
+				addSlotDto.getSlotPrice(),addSlotDto.getAvailableslots(),addSlotDto.getParkingLocation(),addSlotDto.getBooked(),
+				addSlotDto.getemail_id(),
 				addSlotDto.getPincode(),addSlotDto.getDate(),addSlotDto.getStartTime(),
 				addSlotDto.getEndTime());
 //////		User users = new User();
