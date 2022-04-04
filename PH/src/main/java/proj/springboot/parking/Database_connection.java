@@ -5,12 +5,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-import static proj.springboot.service.UserServiceImpl.email_123;
-
 public class Database_connection {
     public static Connection testing_connection() {
         try{
-            System.out.println(email_123);
             Properties pts= new Properties();
             FileInputStream input= new FileInputStream("config.properties");
             pts.load(input);

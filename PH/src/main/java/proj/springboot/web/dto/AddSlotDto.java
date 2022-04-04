@@ -21,13 +21,6 @@ public class AddSlotDto {
 	private String availableslots;
 	private String email_id;
 
-	public String getEmail_id() {
-		return email_id;
-	}
-
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
-	}
 
 	public String getAvailableslots() {
 		return availableslots;
@@ -41,20 +34,24 @@ public class AddSlotDto {
 
 	}
 
-	public AddSlotDto(String parkingName, String slotPrice,String Booked, String availableslots, String parkingLocation, String pincode, String date, String startTime, String endTime) {
+	public AddSlotDto(String parkingName,String email_id, String slotPrice,String Booked, String availableslots, String parkingLocation, String pincode, String date, String startTime, String endTime) {
 		super();
 		this.booked=Booked;
 		this.parkingName = parkingName;
 		this.slotPrice = slotPrice;
-
 		this.parkingLocation = parkingLocation;
 		this.pincode = pincode;
+		this.email_id= email_id;
 		this.date = date;
 		this.startTime = startTime;
 		this.endTime = endTime;
 
 	}
 
+	public String getemail_id(){
+		return email_id;
+	}
+	public void setemail_id(String email_id){this.email_id = email_id;}
 	public String getParkingName() {
 
 		return parkingName;

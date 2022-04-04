@@ -19,7 +19,6 @@ import proj.springboot.web.dto.UserRegistrationDto;
 
 @Service
 public class UserServiceImpl implements UserService{
-	public static String email_123 = null;
 
 	private UserRepository userRepository;
 
@@ -44,10 +43,9 @@ public class UserServiceImpl implements UserService{
 		return userRepository.save(user);
 	}
 
-//	@Override
+	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		email_123=username;
-		System.out.println(email_123);
+
 		User user = userRepository.findByEmail(username);
 		if(user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");

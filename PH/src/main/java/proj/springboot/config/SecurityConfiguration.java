@@ -8,10 +8,18 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import proj.springboot.service.UserService;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -50,6 +58,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.formLogin()
 		.loginPage("/login")
 		.permitAll()
+				.successHandler(new AuthenticationSuccessHandler() {
+					@Override
+					public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+						UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+						String username = userDetails.getUsername();
+						System.out.println(username);
+						System.out.println(httpServletRequest.getContextPath());
+						httpServletResponse.sendRedirect(httpServletRequest.getContextPath());
+						httpServletResponse.getWriter().write(username);
+						httpServletResponse.getWriter().flush();
+					}
+				})
 		.and()
 		.logout()
 		.invalidateHttpSession(true)
