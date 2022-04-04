@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import proj.springboot.admin.admin_details;
 import proj.springboot.parking.Parking_details;
 import proj.springboot.parking.booking_details;
 import proj.springboot.parking.reading_database;
@@ -20,8 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static proj.springboot.Map.direction.direction_finder;
+import static proj.springboot.admin.admin_cards.admin_cards;
 import static proj.springboot.parking.Booking_slots.payment_cards;
 import static proj.springboot.parking.reading_database.parking_cards;
+import static proj.springboot.service.UserServiceImpl.email_123;
+import static proj.springboot.view.view.view_cards;
+import static proj.springboot.view.view.view_cards_history;
 
 @Controller
 public class MainController {
@@ -132,6 +137,11 @@ public class MainController {
 			}
 		}
 		return null;
+	}
+	@GetMapping(value = "/deletion/{id}")
+	public String deletion(Model model, @PathVariable("id") long id) {
+		List<admin_details> gui_parking_details = admin_cards((int) id);
+		return "404";
 	}
 
 }

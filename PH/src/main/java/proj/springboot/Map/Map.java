@@ -27,13 +27,13 @@ public class Map {
         Statement stmt1 = (Statement) connection.createStatement();
         //selecting database
         int rs2 = stmt1.executeUpdate("Use CSCI5308_14_TEST");
-        ResultSet rs1 = stmt1.executeQuery("select * from parking where parking_id ='" + parking_id +"'");
+        ResultSet rs1 = stmt1.executeQuery("select * from slot where id ='" + parking_id +"'");
         String address = null;
         String city =null;
         while(rs1.next()) {
             direction_object doj = new direction_object();
-            address = rs1.getString(3);
-            city = rs1.getString(5);
+            address = rs1.getString(5);
+            city = rs1.getString(9);
         }
         System.out.println(city);
         System.out.println(address);
