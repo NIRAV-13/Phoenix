@@ -31,11 +31,11 @@ build:       # This job runs in the build stage, which runs first.
     - apt install wget -y
     - apt-get install curl -y
     - apt install git -y
-    - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
     - ls
     - cd /builds/courses/2022-winter/csci-5308/group14/PH
     - ls
     - mvn clean install
+    - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
     - java -jar DesigniteJava.jar -i /builds/courses/2022-winter/csci-5308/group14 -o DesigniteOutput12 > Designatejava.txt
     - cat Designatejava.txt
     - ls
