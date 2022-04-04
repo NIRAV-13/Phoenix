@@ -91,5 +91,16 @@ public class MainController {
 		}
 		return null;
 	}
+	@GetMapping(value = "/view/{id}")
+	public String view(Model model, @PathVariable("id") String id) throws SQLException, ClassNotFoundException {
+		List<Parking_details> gui_parking_details = parking_cards();
+		ArrayList<booking_details> booking_detail_gui = payment_cards(Integer.valueOf(id));
+		for (booking_details booking_detail_guis : booking_detail_gui) {
+			System.out.println("Testing" + booking_detail_guis.getPlace());
+			model.addAttribute("p1", booking_detail_gui.get(0));
+			return "abc1";
+		}
+		return null;
+	}
 
 }
