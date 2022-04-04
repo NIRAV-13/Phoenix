@@ -13,6 +13,7 @@ import proj.springboot.admin.admin_details;
 import proj.springboot.parking.Parking_details;
 import proj.springboot.parking.booking_details;
 import proj.springboot.parking.reading_database;
+import proj.springboot.view.view_details;
 
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
@@ -24,6 +25,8 @@ import static proj.springboot.admin.admin_cards.admin_cards;
 import static proj.springboot.parking.Booking_slots.payment_cards;
 import static proj.springboot.parking.reading_database.parking_cards;
 import static proj.springboot.service.UserServiceImpl.email_123;
+import static proj.springboot.view.view.view_cards;
+import static proj.springboot.view.view.view_cards_history;
 
 @Controller
 public class MainController {
@@ -96,17 +99,26 @@ public class MainController {
 	}
 
 	@GetMapping(value = "/view/{id}")
-	public String view(Model model, @PathVariable("id") String id) throws SQLException, ClassNotFoundException {
-		List<Parking_details> gui_parking_details = parking_cards();
-		ArrayList<booking_details> booking_detail_gui = payment_cards(Integer.valueOf(id));
-		for (booking_details booking_detail_guis : booking_detail_gui) {
-			System.out.println("Testing" + booking_detail_guis.getPlace());
-			model.addAttribute("p1", booking_detail_gui.get(0));
-			return "abc1";
+	public String view(Model model, @PathVariable("id") Integer id) throws SQLException, ClassNotFoundException {
+		List<view_details> gui_parking_details = view_cards(id);
+		for (view_details booking_detail_guis : gui_parking_details) {
+			System.out.println("Testing" + booking_detail_guis.getUserid());
+			model.addAttribute("p1", gui_parking_details);
+			return "view";
 		}
 		return null;
 	}
 
+	@GetMapping(value = "/history/{id}")
+	public String history(Model model, @PathVariable("id") Integer id) throws SQLException, ClassNotFoundException {
+		List<view_details> gui_parking_details = view_cards_history(id);
+		for (view_details booking_detail_guis : gui_parking_details) {
+			System.out.println("Testing" + booking_detail_guis.getUserid());
+			model.addAttribute("p1", gui_parking_details);
+			return "view";
+		}
+		return null;
+	}
 	@GetMapping("/admin")
 	public String admin(Model model) {
 		List<Parking_details> gui_parking_details = parking_cards();

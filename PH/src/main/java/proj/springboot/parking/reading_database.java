@@ -34,19 +34,22 @@ public class reading_database {
             while(rs1.next()){
                 //getting value of total initial slots available
                 Parking_details pd = new Parking_details();
-//                pd.setDate(rs1.getDate(6));
-                pd.setParking_name(rs1.getString(8));
-                pd.setId(rs1.getInt(1));
-                pd.setTotal_slots(rs1.getInt(3));
-                int available_slots = rs1.getInt(3);
-                pd.setAvailable_slots(available_slots);
-                pd.setParking_location(rs1.getString(5));
-                pd.setParkingid(rs1.getInt(1));
-                pd.setParking_pincode(rs1.getString(9));
-                pd.setBooked_slots(rs1.getInt(2));
-                pd.setSlot_price((rs1.getInt(10)));
-                pd.setMaps(direction.direction_finder(rs1.getInt(1)));
-                parking_details.add(pd);
+                if(rs1.getInt(3) >0){
+                    //                pd.setDate(rs1.getDate(6));
+                    pd.setParking_name(rs1.getString(8));
+                    pd.setId(rs1.getInt(1));
+                    pd.setTotal_slots(rs1.getInt(3));
+                    int available_slots = rs1.getInt(3);
+                    pd.setAvailable_slots(available_slots);
+                    pd.setParking_location(rs1.getString(5));
+                    pd.setParkingid(rs1.getInt(1));
+                    pd.setParking_pincode(rs1.getString(9));
+                    pd.setBooked_slots(rs1.getInt(2));
+                    pd.setSlot_price((rs1.getInt(10)));
+                    pd.setMaps(direction.direction_finder(rs1.getInt(1)));
+                    parking_details.add(pd);
+                }
+
             }
             for(Parking_details pd1 : parking_details){
                 System.out.println(pd1.getParkingid());
