@@ -9,6 +9,7 @@ proj/springboot/payment/Order.class
 proj/springboot/model/Slot.class
 proj/springboot/parking/reading_database.class
 proj/springboot/web/AddSlotController.class
+proj/springboot/feedback/feedback_details.class
 proj/springboot/service/UserService.class
 proj/springboot/service/UserServiceImpl.class
 proj/springboot/payment/PaypalService.class
@@ -28,6 +29,7 @@ proj/springboot/Map/Map.class
 proj/springboot/web/dto/UserRegistrationDto.class
 proj/springboot/view/view_details.class
 proj/springboot/parking/Database_connection.class
+proj/springboot/feedback/feedback.class
 proj/springboot/service/SlotService.class
 proj/springboot/Map/direction_object.class
 proj/springboot/parking/Booking_slots.class

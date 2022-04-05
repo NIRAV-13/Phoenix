@@ -30,7 +30,7 @@
   <!-- Menubar -->
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" th:action="@{/}" href="index">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" th:action="@{/}" href="/">
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-car"></i>
       </div>
@@ -38,7 +38,7 @@
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
-      <a class="nav-link" th:action="@{/}" href="index">
+      <a class="nav-link" th:action="@{/}" href="/">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
@@ -204,6 +204,7 @@
                   <th>Parking Location</th>
                   <th>Parking Name</th>
                   <th>Date</th>
+                  <th>Provide Feedback</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -212,6 +213,12 @@
                   <td th:text="${product.getParking_address()}"></td>
                   <td th:text="${product.getParking_location()}"></td>
                   <td th:text="${product.getDate()}"></td>
+                  <td >
+                    <form th:action="@{/feeback/{id}(id =${product.getTransaction_number()})}" style="padding: 10px;" method="Get" >
+                      <button class="btn btn-outline-success" type="submit">Provide Feedback</button>
+                    </form>
+                  </td>
+
                   <td >
                 </tr>
                 </tbody>
