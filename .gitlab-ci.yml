@@ -15,10 +15,15 @@
 
 stages:          # List of stages for jobs, and their order of execution
   - build
-  - test
+  - quality
   - deploy
 
 build:       # This job runs in the build stage, which runs first.
+  image: maven:3-jdk-11
+  stage: test
+  script: mvn clean test
+
+quality:       # This job runs in the build stage, which runs first.
   image: ubuntu:18.04
   stage: build
   script:
@@ -32,10 +37,24 @@ build:       # This job runs in the build stage, which runs first.
     - apt install git -y
     - cd /builds/courses/2022-winter/csci-5308/group14/PH
     - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
-    - ls
-    - mvn clean install
     - java -jar DesigniteJava.jar -i ./ -o code-quality/ -f XML
-    - ls
+
+
+
+deploy:       # This job runs in the build stage, which runs first.
+  image: ubuntu:18.04
+  stage: build
+  script:
+    - apt-get update
+    - apt-get clean
+    - apt install default-jre -y 
+    - apt install default-jdk -y 
+    - apt install maven -y
+    - apt install wget -y
+    - apt-get install curl -y
+    - apt install git -y
+    - cd /builds/courses/2022-winter/csci-5308/group14/PH
+    - mvn clean install
     - apt-get install -y ruby-dev
     - gem install faraday -v 1.10.0
     - apt-get install -y ruby-dev
