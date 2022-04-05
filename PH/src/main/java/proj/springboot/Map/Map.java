@@ -32,7 +32,7 @@ public class Map {
         String city =null;
         while(rs1.next()) {
             direction_object doj = new direction_object();
-            address = rs1.getString(5);
+            address = rs1.getString(7);
             city = rs1.getString(9);
         }
         System.out.println(city);

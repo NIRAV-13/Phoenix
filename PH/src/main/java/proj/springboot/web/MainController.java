@@ -1,13 +1,21 @@
 package proj.springboot.web;
 
+import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payment;
+import com.paypal.base.rest.PayPalRESTException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import proj.springboot.admin.admin_details;
 import proj.springboot.parking.Parking_details;
 import proj.springboot.parking.booking_details;
+import proj.springboot.payment.PaypalService;
 import proj.springboot.view.view_details;
+import proj.springboot.payment.Order;
 
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
@@ -20,6 +28,7 @@ import static proj.springboot.parking.reading_database.parking_cards;
 import static proj.springboot.service.UserServiceImpl.email_123;
 import static proj.springboot.view.view.view_cards;
 import static proj.springboot.view.view.view_cards_history;
+
 
 @Controller
 public class MainController {
@@ -136,5 +145,55 @@ public class MainController {
 		List<admin_details> gui_parking_details = admin_cards((int) id);
 		return "error";
 	}
+	static int id=0;
 
+	@Autowired
+	PaypalService service;
+
+	public static final String SUCCESS_URL = "success";
+	public static final String CANCEL_URL = "cancel";
+
+	@GetMapping("/Paypal_home/{id}")
+	public String payment(@ModelAttribute("order") Order order, @PathVariable("id") String id) throws PayPalRESTException, SQLException {
+		this.id= Integer.parseInt(id);
+		String currency ="CAD";
+		String method = "PAYPAL";
+		order = new Order();
+		order.payed(Integer.parseInt(id));
+		Payment payment = service.createPayment(order.getPrice(), currency, method,
+				order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
+				"http://localhost:8080/" + SUCCESS_URL);
+		for(Links link:payment.getLinks()) {
+			if(link.getRel().equals("approval_url")) {
+				return "redirect:"+link.getHref();
+			}
+		}
+		return "redirect:/Paypal_home";
+	}
+
+	@GetMapping(value = SUCCESS_URL)
+	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+		try {
+			Payment payment = service.executePayment(paymentId, payerId);
+			System.out.println(payment.toJSON());
+			if (payment.getState().equals("approved")) {
+				return "Paypal_success";
+			}
+		} catch (PayPalRESTException e) {
+			System.out.println(e.getMessage());
+		}
+		return "Paypal_success";
+	}
+
+	@GetMapping(value = "/payment")
+	public String payment(Model model) throws SQLException, ClassNotFoundException {
+		List<Parking_details> gui_parking_details = parking_cards();
+		ArrayList<booking_details> booking_detail_gui = payment_cards(id);
+		for (booking_details booking_detail_guis : booking_detail_gui) {
+			System.out.println("Testing" + booking_detail_guis.getPlace());
+			model.addAttribute("p1", booking_detail_gui.get(0));
+			return "abc1";
+		}
+		return "abc1";
+	}
 }
