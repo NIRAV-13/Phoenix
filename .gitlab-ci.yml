@@ -38,7 +38,7 @@ quality:       # This job runs in the build stage, which runs first.
     - apt-get install curl -y
     - apt install git -y
     - cd /builds/courses/2022-winter/csci-5308/group14/PH
-    - wget https://www.designite-tools.com/static/download/DJC/DesigniteJava.jar
+    - wget -O DesigniteJava.jar https://www.dropbox.com/s/mwizkj8uhplz4x3/DesigniteJava.jar?dl=1
     - java -jar DesigniteJava.jar -i ./ -o code-quality/ -f XML
 
 
