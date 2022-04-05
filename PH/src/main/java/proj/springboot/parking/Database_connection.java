@@ -9,7 +9,9 @@ public class Database_connection {
     public static Connection testing_connection() {
         try{
             Properties pts= new Properties();
-            FileInputStream input= new FileInputStream("/Users/its.touch/Documents/ASDC_2022/ASDC-project-latest/group14/config.properties");
+            String dir = System.getProperty("user.dir");
+            System.out.println(dir);
+            FileInputStream input= new FileInputStream(dir+"/group14/config.properties");
             pts.load(input);
             input.close();
             String url = pts.getProperty("jdbc.url");
