@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: proj.springboot.RegistrationLoginSpringBootSecurityThymeleafApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.834 s - in proj.springboot.RegistrationLoginSpringBootSecurityThymeleafApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.66 s - in proj.springboot.RegistrationLoginSpringBootSecurityThymeleafApplicationTests

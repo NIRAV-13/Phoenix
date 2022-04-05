@@ -8,15 +8,15 @@ import java.util.Properties;
 public class Database_connection {
     public static Connection testing_connection() {
         try{
-            Properties pts= new Properties();
-            String dir = System.getProperty("user.dir");
-            System.out.println(dir);
-            FileInputStream input= new FileInputStream(dir+"/group14/config.properties");
-            pts.load(input);
-            input.close();
-            String url = pts.getProperty("jdbc.url");
-            String username = pts.getProperty("jdbc.user");
-            String password = pts.getProperty("jdbc.password");
+//            Properties pts= new Properties();
+//            String dir = System.getProperty("user.dir");
+//            System.out.println(dir);
+//            FileInputStream input= new FileInputStream("config.properties");
+//            pts.load(input);
+//            input.close();
+            String url = "jdbc:mysql://db-5308.cs.dal.ca/CSCI5308_14_TEST";
+            String username = "CSCI5308_14_TEST_USER";
+            String password = "eehoo5ohchoh6aeL";
             Connection con= DriverManager.getConnection(url,username,password);
             return con;
         } catch (Exception e) {
