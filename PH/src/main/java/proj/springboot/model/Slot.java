@@ -2,6 +2,8 @@ package proj.springboot.model;
 
 import javax.persistence.*;
 
+import static proj.springboot.service.UserServiceImpl.email_123;
+
 @Entity
 @Table(name =  "slot", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Slot<parkingName, parkingLocation, pincode> {
@@ -57,7 +59,7 @@ public class Slot<parkingName, parkingLocation, pincode> {
 		this.slotPrice = slotPrice;
 		this.parkingLocation = parkingLocation;
 		this.pincode = pincode;
-		this.email_id=email_id;
+		this.email_id=email_123;
 		this.date = date;
 		this.startTime = startTime;
 		this.endTime = endTime;

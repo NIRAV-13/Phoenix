@@ -69,6 +69,17 @@ public class MainController {
 		}
 		return null;
 	}
+	@GetMapping(value = "/history")
+	public String history(Model model) throws SQLException, ClassNotFoundException {
+		List<view_details> view_cards_details = view_cards_history(email_123);
+		System.out.println(view_cards_details);
+		for (view_details view_cards : view_cards_details) {
+			System.out.println("Testing" + view_cards.getUserid());
+			model.addAttribute("p1", view_cards_details);
+			return "view";
+		}
+		return null;
+	}
 
 	@GetMapping(value = "/pincode/{id}")
 	public String pincode(Model model, @PathVariable("id") String id) {
@@ -107,27 +118,27 @@ public class MainController {
 		return null;
 	}
 
-	@GetMapping(value = "/view/{id}")
-	public String view(Model model, @PathVariable("id") Integer id) throws SQLException, ClassNotFoundException {
-		List<view_details> gui_parking_details = view_cards(id);
+	@GetMapping(value = "/")
+	public String view(Model model) throws SQLException, ClassNotFoundException {
+		List<view_details> gui_parking_details = view_cards(email_123);
 		for (view_details booking_detail_guis : gui_parking_details) {
 			System.out.println("Testing" + booking_detail_guis.getUserid());
 			model.addAttribute("p1", gui_parking_details);
-			return "view";
+			return "index";
 		}
 		return null;
 	}
 
-	@GetMapping(value = "/history/{id}")
-	public String history(Model model, @PathVariable("id") Integer id) throws SQLException, ClassNotFoundException {
-		List<view_details> gui_parking_details = view_cards_history(id);
-		for (view_details booking_detail_guis : gui_parking_details) {
-			System.out.println("Testing" + booking_detail_guis.getUserid());
-			model.addAttribute("p1", gui_parking_details);
-			return "view";
-		}
-		return null;
-	}
+//	@GetMapping(value = "/history/{id}")
+//	public String history(Model model, @PathVariable("id") Integer id) throws SQLException, ClassNotFoundException {
+//		List<view_details> gui_parking_details = view_cards_history(id);
+//		for (view_details booking_detail_guis : gui_parking_details) {
+//			System.out.println("Testing" + booking_detail_guis.getUserid());
+//			model.addAttribute("p1", gui_parking_details);
+//			return "slots";
+//		}
+//		return null;
+//	}
 	@GetMapping("/admin")
 	public String admin(Model model) {
 		List<Parking_details> gui_parking_details = parking_cards();
@@ -161,8 +172,8 @@ public class MainController {
 		order = new Order();
 		order.payed(Integer.parseInt(id));
 		Payment payment = service.createPayment(order.getPrice(), currency, method,
-				order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
-				"http://localhost:8080/" + SUCCESS_URL);
+				order.getIntent(), order.getDescription(), "https://asdc-group-14.herokuapp.com:8080/" + CANCEL_URL,
+				"https://asdc-group-14.herokuapp.com:8080/" + SUCCESS_URL);
 		for(Links link:payment.getLinks()) {
 			if(link.getRel().equals("approval_url")) {
 				return "redirect:"+link.getHref();

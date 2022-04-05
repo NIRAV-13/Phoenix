@@ -1,5 +1,7 @@
 package proj.springboot.web.dto;
 
+import static proj.springboot.service.UserServiceImpl.email_123;
+
 public class AddSlotDto {
 	private String booked;
 
@@ -41,7 +43,7 @@ public class AddSlotDto {
 		this.slotPrice = slotPrice;
 		this.parkingLocation = parkingLocation;
 		this.pincode = pincode;
-		this.email_id= email_id;
+		this.email_id= email_123;
 		this.date = date;
 		this.startTime = startTime;
 		this.endTime = endTime;

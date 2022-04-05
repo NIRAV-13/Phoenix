@@ -51,6 +51,8 @@
 					<h6 class="collapse-header">Choose action</h6>
 					<a class="collapse-item" th:action="@{/Add_slot}" href="Add_slot">Add Slots</a>
 					<a class="collapse-item" th:action="@{/Book_slot}" href="Book_slot">Book Slots</a>
+					<a class="collapse-item" th:action="@{/history}" href="history">History</a>
+
 				</div>
 			</div>
 		</li>
@@ -271,24 +273,20 @@
 							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 								<thead>
 								<tr>
-									<th>Slot Name</th>
-									<th>Slot location</th>
-									<th>Owner</th>
-									<th>Time</th>
+									<th>Transaction Id</th>
+									<th>Parking Location</th>
+									<th>Parking Name</th>
 									<th>Date</th>
-									<th>Payment</th>
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<td>PV _ 7</td>
-									<td>d street </td>
-									<td>Thomas</td>
-									<td>12:00 - 14:00</td>
-									<td>2022/03/22</td>
-									<td>Pending</td>
+								<tr th:each="product : ${p1}">
+									<td th:text="${product.getTransaction_number()}"></td>
+									<td th:text="${product.getParking_address()}"></td>
+									<td th:text="${product.getParking_location()}"></td>
+									<td th:text="${product.getDate()}"></td>
+									<td >
 								</tr>
-
 								</tbody>
 							</table>
 						</div>
