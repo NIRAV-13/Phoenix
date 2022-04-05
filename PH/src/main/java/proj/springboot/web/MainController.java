@@ -172,8 +172,8 @@ public class MainController {
 		order = new Order();
 		order.payed(Integer.parseInt(id));
 		Payment payment = service.createPayment(order.getPrice(), currency, method,
-				order.getIntent(), order.getDescription(), "https://asdc-group-14.herokuapp.com:8080/" + CANCEL_URL,
-				"https://asdc-group-14.herokuapp.com:8080/" + SUCCESS_URL);
+				order.getIntent(), order.getDescription(), "https://asdc-group-14.herokuapp.com/" + CANCEL_URL,
+				"https://asdc-group-14.herokuapp.com/" + SUCCESS_URL);
 		for(Links link:payment.getLinks()) {
 			if(link.getRel().equals("approval_url")) {
 				return "redirect:"+link.getHref();

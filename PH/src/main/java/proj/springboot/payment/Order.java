@@ -44,7 +44,7 @@ public class Order {
     static int rs;
     static {
         try {
-            rs = stmt1.executeUpdate("Use User1");
+            rs = stmt1.executeUpdate("Use CSCI5308_14_TEST");
         } catch (SQLException e) {
             e.printStackTrace();
         }
