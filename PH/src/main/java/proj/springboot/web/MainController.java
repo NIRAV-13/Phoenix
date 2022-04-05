@@ -43,7 +43,7 @@ public class MainController {
 		return "index";
 	}
 
-	@GetMapping("/products")
+	@GetMapping("/product")
 	public String listProducts(Model model) {
 		List<Parking_details> gui_parking_details = parking_cards();
 		model.addAttribute("p1", gui_parking_details);
