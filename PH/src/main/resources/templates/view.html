@@ -56,8 +56,8 @@
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Choose action</h6>
-          <a class="collapse-item" th:action="@{/Add_slot}" href="Add_slot">Add Slots</a>
-          <a class="collapse-item" th:action="@{/Book_slot}" href="Book_slot">Book Slots</a>
+          <a class="collapse-item" th:action="@{/Add_slot_form}" href="Add_slot_form">Add Slots</a>
+          <a class="collapse-item" th:action="@{/product}" href="product">Book Slots</a>
         </div>
       </div>
     </li>
@@ -214,8 +214,8 @@
                   <td th:text="${product.getParking_location()}"></td>
                   <td th:text="${product.getDate()}"></td>
                   <td >
-                    <form th:action="@{/feeback/{id}(id =${product.getTransaction_number()})}" style="padding: 10px;" method="Get" >
-                      <button class="btn btn-outline-success" type="submit">Provide Feedback</button>
+                    <form a href="tel:1234567890">Call us at 123-456-7890 </a>
+                      <button class="btn btn-outline-success" type="submit">Call Admin</button>
                     </form>
                   </td>
 
